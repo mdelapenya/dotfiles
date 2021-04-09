@@ -40,5 +40,10 @@ export GREN_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
 export GOPATH=${HOME}/sourcecode
 export PATH=${PATH}:${GOPATH//://bin:}/bin
 
+# GRADLE
+export GRADLE_HOME=/usr/local/Cellar/gradle/4.10
+export GRADLE_OPTS="-Xms4096M -Xmx4096M -XX:-UseGCOverheadLimit"
+export PATH=${PATH}:${GRADLE_HOME}/bin
+
 # PYTHON
 export PYTHONPATH="/usr/local/bin/python:$PYTHONPATH"
