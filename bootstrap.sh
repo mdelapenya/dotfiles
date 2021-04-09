@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")";
 DOTFILES_ROOT="`pwd`"
 
-git pull origin master
+git pull origin main
 
 function doIt() {
   for source in `find ${DOTFILES_ROOT} -maxdepth 2 -type f -name ".*"`; do
