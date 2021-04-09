@@ -126,6 +126,9 @@ alias adb="~/mobile/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/adb"
 # Airport CLI alias
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
+#alias for gitk
+alias gitka="gitk --all"
+
 #Docker: connect to HyperKit
 alias dockerkit="screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty"
 
