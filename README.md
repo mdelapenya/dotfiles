@@ -25,5 +25,5 @@ set -- -f; source bootstrap.sh
 ### Install Homebrew formulas
 
 ```bash
-./brew.sh
+./scripts/brew.sh
 ```
