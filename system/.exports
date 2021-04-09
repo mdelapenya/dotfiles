@@ -51,5 +51,8 @@ export GRADLE_HOME=/usr/local/Cellar/gradle/4.10
 export GRADLE_OPTS="-Xms4096M -Xmx4096M -XX:-UseGCOverheadLimit"
 export PATH=${PATH}:${GRADLE_HOME}/bin
 
+#Java
+export JAVA_HOME="/Users/mdelapenya/.sdkman/candidates/java/current"
+
 # PYTHON
 export PYTHONPATH="/usr/local/bin/python:$PYTHONPATH"
