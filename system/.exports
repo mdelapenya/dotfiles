@@ -39,3 +39,6 @@ export GREN_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
 #GO
 export GOPATH=${HOME}/sourcecode
 export PATH=${PATH}:${GOPATH//://bin:}/bin
+
+# PYTHON
+export PYTHONPATH="/usr/local/bin/python:$PYTHONPATH"
