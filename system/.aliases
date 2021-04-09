@@ -99,6 +99,17 @@ alias c="tr -d '\n' | pbcopy"
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
+#alias for memory usage
+alias meminfo="free -m -l -t"
+
+#alias to get to processes eating memory
+alias psmem="ps aux | sort -nr -k 4"
+alias psmem10="psmem | head -10"
+
+#alias to get to processes eating cpu
+alias pscpu="ps aux | sort -nr -k 3"
+alias pscpu10="pscpu | head -10"
+
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
