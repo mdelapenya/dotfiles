@@ -199,3 +199,50 @@ alias publishpr="git publish && pr"
 
 ## Set alias for the CI local worker
 alias connect_local_worker="nohup java -jar ~/tools/agent.jar -jnlpUrl http://localhost:18080/computer/local/slave-agent.jnlp &"
+
+#
+# Completely erase a branch: locally and in origin
+#
+function gdd() {
+	if [ $# -ne 1 ]
+	then
+		echo "Please select only one git branch"
+		ret
+	fi
+
+	git branch -D $1 && git push origin :$1
+}
+
+#
+# pull and push from master
+# TODO: eventually change to main
+#
+function gpp() {
+	BRANCH="master"
+	if [ ${1} ]
+	then
+		BRANCH=${1}
+	fi
+
+	git pull upstream ${BRANCH} && git push origin ${BRANCH}
+}
+
+#
+# Update master, and rebase code in current branch with master
+# TODO: eventually change to main
+#
+function grebase() {
+	BRANCH="master"
+        if [ ${1} ]
+        then
+                BRANCH=${1}
+        fi
+
+	CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+	echo "You are in" ${CURRENT_BRANCH} "branch"
+	git checkout ${BRANCH}
+	gpp ${BRANCH}
+	git co ${CURRENT_BRANCH}
+	echo "Rebasing ${CURRENT_BRANCH} with ${BRANCH} branch"
+	git rebase ${BRANCH}
+}
