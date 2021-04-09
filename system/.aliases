@@ -120,6 +120,9 @@ alias rsync='rsync --progress'
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
+#alias for Android Debug Bridge (ADB)
+alias adb="~/mobile/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/adb"
+
 # Airport CLI alias
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
