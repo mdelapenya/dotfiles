@@ -125,6 +125,55 @@ reveal () {
 	gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
 }
 
+#########
+#########   Git specific
+
+#
+# Completely erase a branch: locally and in origin
+#
+function gdd() {
+	if [ $# -ne 1 ]
+	then
+		echo "Please select only one git branch"
+		ret
+	fi
+
+	git branch -D $1 && git push origin :$1
+}
+
+#
+# pull and push from master
+# TODO: eventually change to main
+#
+function gpp() {
+	BRANCH="master"
+	if [ ${1} ]
+	then
+		BRANCH=${1}
+	fi
+
+	git pull upstream ${BRANCH} && git push origin ${BRANCH}
+}
+
+#
+# Update master, and rebase code in current branch with master
+# TODO: eventually change to main
+#
+function grebase() {
+	BRANCH="master"
+        if [ ${1} ]
+        then
+                BRANCH=${1}
+        fi
+
+	CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+	echo "You are in" ${CURRENT_BRANCH} "branch"
+	git checkout ${BRANCH}
+	gpp ${BRANCH}
+	git co ${CURRENT_BRANCH}
+	echo "Rebasing ${CURRENT_BRANCH} with ${BRANCH} branch"
+	git rebase ${BRANCH}
+}
 
 #########
 #########   Elastic specific
