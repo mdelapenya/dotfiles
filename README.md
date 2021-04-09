@@ -1,11 +1,13 @@
-# v1v’s dotfiles
+# mdelapenya’s dotfiles
+
+> A clone of https://github.com/v1v/dotfiles.git
 
 ## Installation
 
 ### Using Git and the bootstrap script
 
 ```bash
-git clone https://github.com/v1v/dotfiles.git .dotfiles && cd .dotfiles && source bootstrap.sh
+git clone https://github.com/mdelapenya/dotfiles.git .dotfiles && cd .dotfiles && source bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
