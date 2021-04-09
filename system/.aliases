@@ -9,6 +9,9 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
+alias d="docker"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias k="kubectl"
