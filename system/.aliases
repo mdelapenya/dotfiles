@@ -126,14 +126,14 @@ alias adb="~/mobile/adt-bundle-mac-x86_64-20140702/sdk/platform-tools/adb"
 # Airport CLI alias
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
+#Docker: connect to HyperKit
+alias dockerkit="screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty"
+
 # spotify
 alias spotiwtf="osascript -e 'tell application \"Spotify\" to artist of current track & \" - \" & name of current track'"
 
 # swagger
 alias swagger="docker run --rm -it -e GOPATH=$HOME/go:/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger"
-
-#Docker: connect to HyperKit
-alias dockerkit="screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty"
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
