@@ -141,9 +141,10 @@ alias personal='cd ~/personal'
 # Set the JJBB (https://github.com/elastic/infra/tree/master/flavortown/jjbb)
 alias jjbb="docker run --rm -e VAULT_TOKEN=$(cat ~/.vault-token) -e HOME=/jjbb -v $(pwd):/jjbb -w /jjbb --network=host docker.elastic.co/infra/jjbb"
 
-# Set alias for the HUB
-alias pr="hub pull-request -c --assign v1v --labels automation --draft"
-alias publishpr="git publish && hub pull-request -c --assign v1v --labels automation --draft --reviewer elastic/observablt-robots"
+# Send a PR to Github
+alias pr="hub pull-request -c --assign mdelapenya --draft -p -o --reviewer @elastic/observablt-robots"
+alias prbeats="pr -l 'Team:Automation'"
+alias prinfra="hub pull-request -c --draft -p -o --reviewer @elastic/observablt-robots"
 
 ## Set alias for the CI local worker
 alias connect_local_worker="nohup java -jar ~/tools/agent.jar -jnlpUrl http://localhost:18080/computer/local/slave-agent.jnlp &"
