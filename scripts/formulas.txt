@@ -94,7 +94,6 @@ pcre
 pcre2
 pixman
 pkg-config
-pop
 pre-commit
 pyenv
 pyenv-virtualenv
