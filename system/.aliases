@@ -63,7 +63,7 @@ alias sudo='sudo '
 # Get week number
 alias week='date +%V'
 # get wheater in current location
-alias elparte="curl https://wttr.in"
+alias elparte="curl https://wttr.in?AT"
 alias timestamp="date +%s"
 
 # Phoenix: removing NPM modules
