@@ -31,15 +31,16 @@ fi;
 brew cask install google-cloud-sdk
 brew cask install virtualbox
 
+# sshpass
+brew tap esolitos/ipa
+
 while read f; do
   brew install $f
 done <${BASEDIR}/formulas.txt
 
 vagrant plugin install vagrant-vbguest vagrant-disksize
 
-# sshpass
-brew tap esolitos/ipa
-brew install sshpass
+vagrant plugin install vagrant-vbguest vagrant-disksize
 
 # Yubikey
 brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac

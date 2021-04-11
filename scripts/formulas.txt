@@ -106,6 +106,7 @@ shellcheck
 socat
 sqlite
 ssh-copy-id
+sshpass
 sshuttle
 starship
 swig
