@@ -37,6 +37,10 @@ done <${BASEDIR}/formulas.txt
 
 vagrant plugin install vagrant-vbguest vagrant-disksize
 
+# sshpass
+brew tap esolitos/ipa
+brew install sshpass
+
 # Yubikey
 brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
 
