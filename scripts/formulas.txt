@@ -117,7 +117,7 @@ terraform-inventory
 the_silver_searcher
 tinygo
 tree
-txeh
+txn2/tap/txeh
 vagrant
 vault
 vim --with-override-system-vi
