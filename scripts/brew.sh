@@ -33,6 +33,8 @@ brew cask install virtualbox
 
 # sshpass
 brew tap esolitos/ipa
+# TinyGo
+brew tap tinygo-org/tools
 
 while read f; do
   brew install $f
