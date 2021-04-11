@@ -28,9 +28,6 @@ if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
-brew cask install google-cloud-sdk
-brew cask install virtualbox
-
 # sshpass
 brew tap esolitos/ipa
 # TinyGo
@@ -40,7 +37,9 @@ while read f; do
   brew install $f
 done <${BASEDIR}/formulas.txt
 
-vagrant plugin install vagrant-vbguest vagrant-disksize
+while read f; do
+  brew install --cask $f
+done <${BASEDIR}/cask.txt
 
 vagrant plugin install vagrant-vbguest vagrant-disksize
 
