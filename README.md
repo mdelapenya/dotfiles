@@ -27,3 +27,9 @@ set -- -f; source bootstrap.sh
 ```bash
 ./scripts/brew.sh
 ```
+
+### Install VSCode plugins
+
+```bash
+./scripts/vscode.sh
+```
