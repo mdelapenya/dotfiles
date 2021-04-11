@@ -120,7 +120,7 @@ tree
 txn2/tap/txeh
 vagrant
 vault
-vim --with-override-system-vi
+vim
 visual-studio-code
 watch
 webp
