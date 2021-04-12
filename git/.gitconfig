@@ -4,6 +4,12 @@
 
 [alias]
 
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
@@ -124,6 +130,10 @@
 
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
 	ui = auto
 
 [color "branch"]
@@ -159,6 +169,10 @@
 
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
+
+[github]
+
+	user = mdelapenya
 
 [help]
 
