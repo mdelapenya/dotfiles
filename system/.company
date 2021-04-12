@@ -1,0 +1,2 @@
+# Set variable for the release notes (https://github.com/github-tools/github-release-notes#installation)
+export OBSERVABILITY_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
