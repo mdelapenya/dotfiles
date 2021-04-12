@@ -40,8 +40,8 @@ if type _git &> /dev/null; then
 fi;
 
 # add git completion
-if [ -f ../git/.git-completion.bash ]; then
-  . ../git/.git-completion.bash
+if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+  . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
