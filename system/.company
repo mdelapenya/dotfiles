@@ -1,6 +1,19 @@
 # Set variable for the release notes (https://github.com/github-tools/github-release-notes#installation)
 export OBSERVABILITY_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
 
+# Set the JJBB (https://github.com/elastic/infra/tree/master/flavortown/jjbb)
+alias jjbb="docker run --rm -e VAULT_TOKEN=$(cat ~/.vault-token) -e HOME=/jjbb -v $(pwd):/jjbb -w /jjbb --network=host docker.elastic.co/infra/jjbb"
+
+alias loc_elastic='networksetup -switchtolocation Elastic'
+
+# Send a PR to Github
+alias pr="hub pull-request -c --assign mdelapenya --draft -p -o --reviewer @elastic/observablt-robots"
+alias prbeats="pr -l 'Team:Automation'"
+alias prinfra="hub pull-request -c --draft -p -o --reviewer @elastic/observablt-robots"
+
+# Create alias for switching to the workspace
+alias ws='cd ~/work/src/github.com/elastic'
+
 ## TO connect to windows
 connectWindows() {
   target=${1}

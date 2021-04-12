@@ -183,19 +183,9 @@ alias path='echo -e ${PATH//:/\\n}'
 
 # Create alias for switching home location
 alias loc_home='networksetup -switchtolocation Home'
-alias loc_elastic='networksetup -switchtolocation Elastic'
 
-# Create alias for switching to the workspace
-alias ws='cd ~/work/src/github.com/elastic'
 alias personal='cd ~/personal'
 
-# Set the JJBB (https://github.com/elastic/infra/tree/master/flavortown/jjbb)
-alias jjbb="docker run --rm -e VAULT_TOKEN=$(cat ~/.vault-token) -e HOME=/jjbb -v $(pwd):/jjbb -w /jjbb --network=host docker.elastic.co/infra/jjbb"
-
-# Send a PR to Github
-alias pr="hub pull-request -c --assign mdelapenya --draft -p -o --reviewer @elastic/observablt-robots"
-alias prbeats="pr -l 'Team:Automation'"
-alias prinfra="hub pull-request -c --draft -p -o --reviewer @elastic/observablt-robots"
 # Update the pull request
 alias publishpr="git publish && pr"
 
