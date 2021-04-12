@@ -12,7 +12,7 @@ alias prbeats="pr -l 'Team:Automation'"
 alias prinfra="hub pull-request -c --draft -p -o --reviewer @elastic/observablt-robots"
 
 # Create alias for switching to the workspace
-alias ws='cd ~/work/src/github.com/elastic'
+alias ws='cd ~/sourcecode/src/github.com/elastic'
 
 ## TO connect to windows
 connectWindows() {
