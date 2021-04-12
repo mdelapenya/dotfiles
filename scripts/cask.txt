@@ -1,3 +1,4 @@
+google-chrome
 google-cloud-sdk
 keybase
 virtualbox
