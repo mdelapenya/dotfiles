@@ -1,5 +1,5 @@
-macpass
 google-chrome
 google-cloud-sdk
 keybase
+macpass
 virtualbox
