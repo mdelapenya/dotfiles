@@ -3,4 +3,5 @@ google-chrome
 google-cloud-sdk
 keybase
 macpass
+telegram
 virtualbox
