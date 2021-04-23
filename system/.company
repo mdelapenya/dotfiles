@@ -19,7 +19,7 @@ connectWindows() {
   target=${1}
   pushd ~/sourcecode/src/github.com/elastic/infra/ansible > /dev/null || exit 1
   echo "Connect to ${target}"
-  vault ssh -role bastion -mode otp vmartinez@bastion-jenkins.elastic-ci-prod.gcp.elasticnet.co -i ~/.ssh/id_rsa_elastic -F ssh_config -L10500:${target}:3389
+  vault ssh -role bastion -mode otp mdelapenya@bastion-jenkins.elastic-ci-prod.gcp.elasticnet.co -i ~/.ssh/id_rsa_elastic -F ssh_config -L10500:${target}:3389
   popd > /dev/null
 }
 
