@@ -5,6 +5,7 @@ augeas
 autoconf
 automake
 avrdude
+awscli
 brew-cask-completion
 brotli
 buffalo
