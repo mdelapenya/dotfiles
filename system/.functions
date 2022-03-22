@@ -142,11 +142,10 @@ function gdd() {
 }
 
 #
-# pull and push from master
-# TODO: eventually change to main
+# pull and push from main
 #
 function gpp() {
-	BRANCH="master"
+	BRANCH="main"
 	if [ ${1} ]
 	then
 		BRANCH=${1}
@@ -156,15 +155,21 @@ function gpp() {
 }
 
 #
-# Update master, and rebase code in current branch with master
-# TODO: eventually change to main
+# pull and push from master
+#
+function gppm() {
+	gpp "master"
+}
+
+#
+# Update master, and rebase code in current branch with main
 #
 function grebase() {
-	BRANCH="master"
-        if [ ${1} ]
-        then
-                BRANCH=${1}
-        fi
+	BRANCH="main"
+	if [ ${1} ]
+	then
+			BRANCH=${1}
+	fi
 
 	CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
 	echo "You are in" ${CURRENT_BRANCH} "branch"
@@ -173,4 +178,11 @@ function grebase() {
 	git co ${CURRENT_BRANCH}
 	echo "Rebasing ${CURRENT_BRANCH} with ${BRANCH} branch"
 	git rebase ${BRANCH}
+}
+
+#
+# Update master, and rebase code in current branch with master
+#
+function grebasem() {
+	grebase "master"
 }
