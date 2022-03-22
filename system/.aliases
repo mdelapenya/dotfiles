@@ -136,6 +136,9 @@ alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
 
+# gitk
+alias gitk="/usr/local/bin/wish $(which gitk)"
+
 #rsync with progress
 alias rsync='rsync --progress'
 
