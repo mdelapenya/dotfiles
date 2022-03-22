@@ -14,6 +14,13 @@ alias prinfra="hub pull-request -c --draft -p -o --reviewer @elastic/observablt-
 # Create alias for switching to the workspace
 alias ws='cd ~/sourcecode/src/github.com/elastic'
 
+# Auth to the apm elastic apps
+elastic-apps-auth(){
+   gcloud container clusters get-credentials apps --zone us-central1-a --project elastic-apps-163815
+   kubectl config set-context "$(kubectl config current-context)" --namespace=apm
+   kubectl get pods
+}
+
 ## TO connect to windows
 connectWindows() {
   target=${1}
