@@ -76,7 +76,7 @@ plugins=(
   kubectl
   mvn
   nvm
-  osx
+  macos
   vault
 )
 source $ZSH/oh-my-zsh.sh

@@ -34,7 +34,7 @@ plugins=(
   docker
   dotenv
   git
-  osx
+  macos
   rake
   rbenv
   ruby
