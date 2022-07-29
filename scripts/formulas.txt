@@ -26,6 +26,7 @@ gcc
 gd
 gdbm
 gettext
+gh
 git
 git-flow
 git-ftp
