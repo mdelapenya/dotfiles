@@ -96,7 +96,8 @@
 	publish = !git push -u origin $(git branch-name)
     branch-name = !git rev-parse --abbrev-ref HEAD
     delete-merged-branches = !git co master && git branch --no-color --merged | grep -v '\\*' | xargs -n 1 git branch -d
-    syncup = !git fetch --all && git pull upstream master
+    syncup = !git fetch --all && git pull upstream main
+    syncup2 = !git fetch --all && git pull upstream master
 
 [apply]
 
@@ -212,3 +213,12 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[fetch]
+	prune = true
