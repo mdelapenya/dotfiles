@@ -34,5 +34,11 @@ set -- -f; source bootstrap.sh
 ./scripts/vscode.sh
 ```
 
+### Install other tools
+
+```bash
+./scripts/installs.sh
+```
+
 ## Company-specific configuration
 You can decouple your own settings from your current company settings using the `.company` file. Put there whatever you need but didn't want to mix with your own stuff.
