@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Backup laptop
+alias backup-laptop="rsync -av ~/.ssh ~/.dotfiles ~/.docker ~/Documents ~/Pictures ~/Movies ~/sourcecode  nas:/volume1/downloads/laptop/"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
