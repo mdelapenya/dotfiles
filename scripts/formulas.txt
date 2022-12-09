@@ -10,7 +10,6 @@ bash
 bash-completion@2
 brew-cask-completion
 brotli
-buffalo
 ca-certificates
 cairo
 capstone
@@ -123,6 +122,7 @@ rsync
 sbt
 screen
 shellcheck
+skyscanner/tools/turbolift
 socat
 sqlite
 ssh-copy-id
@@ -137,12 +137,10 @@ terraform-inventory
 the_silver_searcher
 tinygo
 tree
-turbolift
 txn2/tap/txeh
 vagrant
 vault
 vim
-visual-studio-code
 watch
 webp
 wget
