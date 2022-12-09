@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Backup laptop
-alias backup-laptop="rsync -av ~/.ssh ~/.dotfiles ~/.docker ~/Documents ~/Pictures ~/Movies ~/sourcecode  nas:/volume1/downloads/laptop/"
+alias backup-laptop="rsync -av ~/.ssh ~/.local ~/.config ~/.zprofile ~/.sdkman ~/.zsh* ~/.oh* ~/.dotfiles ~/.docker ~/Documents ~/Pictures ~/Movies ~/sourcecode  nas:/volume1/downloads/laptop/"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -138,9 +138,6 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
-
-# gitk
-alias gitk="/usr/local/bin/wish $(which gitk)"
 
 #rsync with progress
 alias rsync='rsync --progress'
