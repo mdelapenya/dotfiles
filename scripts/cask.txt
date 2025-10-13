@@ -1,7 +1,14 @@
+claude-code
+dracula-terminal
+gcloud-cli
+ghostty
 google-chrome
 google-cloud-sdk
 keybase
 macpass
+ngrok
 telegram
-visual-studio-code
+testcontainers-desktop
+vagrant
 virtualbox
+visual-studio-code
