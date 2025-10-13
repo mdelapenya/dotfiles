@@ -97,7 +97,12 @@ function test_ssh_connection() {
       success "SSH key copied successfully"
       return 0
     else
-      fail "Cannot proceed without SSH access"
+      info "Skipping SSH key setup"
+      if confirm "Continue anyway? (rsync will prompt for password if needed)"; then
+        return 0
+      else
+        fail "Cannot proceed without SSH access"
+      fi
     fi
   fi
 }
