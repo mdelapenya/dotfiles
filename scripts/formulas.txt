@@ -13,7 +13,6 @@ brotli
 ca-certificates
 cairo
 capstone
-ccze
 certbot
 colima
 coreutils
