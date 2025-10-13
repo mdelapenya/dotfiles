@@ -44,9 +44,11 @@ function confirm() {
   local default="${2:-n}"
 
   if [ "$default" = "y" ]; then
-    read -p "$prompt (Y/n) " -n 1 -r
+    user "$prompt (Y/n)"
+    read -n 1 -r
   else
-    read -p "$prompt (y/n) " -n 1 -r
+    user "$prompt (y/n)"
+    read -n 1 -r
   fi
   echo ""
 
