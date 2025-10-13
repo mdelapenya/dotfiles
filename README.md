@@ -137,6 +137,94 @@ To update installed software:
 cd ~/.dotfiles && ./scripts/brew.sh
 ```
 
+## GPG Commit Signing
+
+This dotfiles setup includes GPG commit signing configuration. To set up GPG signing for your commits:
+
+### Automated Setup
+
+Run the GPG setup script:
+
+```bash
+./scripts/setup-gpg.sh
+```
+
+This script will:
+1. Check for existing GPG keys
+2. If keys exist, prompt you to either:
+   - Use an existing key (you'll be asked to enter the key ID)
+   - Create a new key
+3. Generate a new 4096-bit RSA key (if creating new)
+4. Configure git to use GPG signing
+5. Export your public key for GitHub/GitLab
+6. Update shell profiles with GPG_TTY
+
+The script handles both new setups and existing key configurations automatically.
+
+### Manual Setup
+
+If you prefer to set up GPG manually:
+
+```bash
+# 1. Generate a new GPG key
+gpg --full-generate-key
+# Choose: RSA and RSA, 4096 bits, key doesn't expire
+# Use your git email: mdelapenya@gmail.com
+
+# 2. List keys and copy the key ID
+gpg --list-secret-keys --keyid-format=long
+# The key ID is after "rsa4096/" (e.g., 66E882E52DF1B461)
+
+# 3. Configure git
+git config --global user.signingkey <KEY_ID>
+git config --global commit.gpgsign true
+git config --global gpg.program $(which gpg)
+
+# 4. Export public key for GitHub
+gpg --armor --export <KEY_ID>
+# Copy the output and add to: https://github.com/settings/keys
+
+# 5. Test signing
+git commit --allow-empty -m "Test GPG signing"
+git log --show-signature -1
+```
+
+### Add GPG Key to GitHub
+
+1. Export your public key: `gpg --armor --export <KEY_ID>`
+2. Go to [GitHub GPG Keys Settings](https://github.com/settings/keys)
+3. Click "New GPG key"
+4. Paste your public key
+5. All commits will now show as "Verified" ✅
+
+### Troubleshooting GPG
+
+**"gpg: signing failed: Inappropriate ioctl for device"**
+```bash
+export GPG_TTY=$(tty)
+# Add to your shell profile permanently
+echo 'export GPG_TTY=$(tty)' >> ~/.zshrc  # or ~/.bash_profile
+```
+
+**"No secret key"**
+```bash
+# Verify key exists
+gpg --list-secret-keys --keyid-format=long
+
+# Ensure git is configured with the correct key ID
+git config --global user.signingkey
+```
+
+**Passphrase prompt issues**
+```bash
+# Install pinentry for GUI password prompt
+brew install pinentry-mac
+
+# Configure GPG to use it
+echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
+```
+
 ## Troubleshooting
 
 ### Shell profile issues
