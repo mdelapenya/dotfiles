@@ -34,7 +34,7 @@ brew tap esolitos/ipa
 brew tap tinygo-org/tools
 
 while read f; do
-  brew install $f
+  brew install $f | true
 done <${BASEDIR}/formulas.txt
 
 while read f; do
