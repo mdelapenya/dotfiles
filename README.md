@@ -11,9 +11,69 @@
 - **VSCode extensions**: Automated extension installation
 - **Path management**: Automated setup for NVM, GVM, SDKMAN, pyenv
 
+## Transferring to a New Mac
+
+### Quick Transfer Process
+
+**On your current Mac (backup):**
+```bash
+# Clone dotfiles first (if not already done)
+git clone https://github.com/mdelapenya/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
+
+# Backup to another Mac or NAS
+backup-mac user@newmac:/backups
+# or
+backup-mac nas:/volume1/backups/laptop
+```
+
+**On your new Mac (restore):**
+```bash
+# Clone dotfiles
+git clone https://github.com/mdelapenya/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
+
+# Restore from backup
+restore-mac user@oldmac:/backups
+# or
+restore-mac nas:/volume1/backups/laptop
+
+# Install dotfiles and tools
+./install.sh
+```
+
+### What Gets Backed Up
+
+The backup script (`scripts/backup-mac.sh`) transfers all items defined in the `BACKUP_ITEMS` array:
+- **SSH keys** (`~/.ssh/`)
+- **GPG keys** (`~/.gnupg/`)
+- **Private configs** (`~/.extra`, `~/.company`, `~/.gitconfig.local`)
+- **Shell configs** (`~/.zshrc`, `~/.bash_profile`, `~/.bashrc`, `~/.oh-my-zsh`, shell history)
+- **Development tools** (`~/.config`, `~/.local`, `~/.docker`, `~/.aws`, `~/.kube`)
+- **Version managers** (`~/.sdkman`, `~/.nvm`, `~/.gvm`, `~/.pyenv`)
+- **Personal files** (`~/Documents`, `~/Pictures`, `~/Movies`, `~/sourcecode`)
+
+**Customizing:** To add or remove items from the backup, edit the `BACKUP_ITEMS` array at the top of `scripts/backup-mac.sh`.
+
+### Backup/Restore Features
+
+- **SSH setup**: Automatically tests connection and offers to copy SSH keys if needed
+- **Safety**: Restore offers to skip existing files (won't overwrite by default)
+- **Progress**: Shows transfer progress and size estimates
+- **Exclusions**: Automatically excludes `.DS_Store`, `node_modules`, `.git`, logs, caches
+
+### Manual Backup/Restore
+
+Run scripts directly:
+```bash
+# Backup
+./scripts/backup-mac.sh user@host:/path
+
+# Restore
+./scripts/restore-mac.sh user@host:/path
+```
+
 ## Fresh Mac Installation
 
-For a brand new Mac, run this single command:
+For a brand new Mac without an existing backup, run this single command:
 
 ```bash
 git clone https://github.com/mdelapenya/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && ./install.sh
