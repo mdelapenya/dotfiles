@@ -141,11 +141,13 @@ for item in "${EXISTING_ITEMS[@]}"; do
 done
 echo ""
 
-# Estimate size
-info "Calculating backup size..."
-TOTAL_SIZE=$(du -sh "${EXISTING_ITEMS[@]}" 2>/dev/null | tail -n1 | awk '{print $1}')
-info "Total size: $TOTAL_SIZE"
-echo ""
+# Estimate size (optional)
+if confirm "Calculate total backup size? (may take a while for large directories)"; then
+  info "Calculating backup size..."
+  TOTAL_SIZE=$(du -sh "${EXISTING_ITEMS[@]}" 2>/dev/null | tail -n1 | awk '{print $1}')
+  info "Total size: $TOTAL_SIZE"
+  echo ""
+fi
 
 if ! confirm "Proceed with backup to $DESTINATION?"; then
   info "Backup cancelled"
