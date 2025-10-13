@@ -1,6 +1,7 @@
 [user]
     name = Manuel de la Peña
     email = mdelapenya@gmail.com
+    signingkey = 66E882E52DF1B461
 
 [alias]
 
@@ -126,6 +127,7 @@
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
+	autocrlf = input
 
 [color]
 
@@ -180,6 +182,10 @@
 	# Automatically correct and execute mistyped commands
 	autocorrect = 1
 
+[gpg]
+
+	program = /opt/homebrew/bin/gpg
+
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
@@ -222,3 +228,9 @@
 
 [fetch]
 	prune = true
+
+[credential]
+	helper = osxkeychain
+
+[init]
+	defaultBranch = main
