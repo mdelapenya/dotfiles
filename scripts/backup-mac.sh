@@ -211,7 +211,6 @@ rsync -av --progress \
   -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3" \
   --exclude='.DS_Store' \
   --exclude='node_modules' \
-  --exclude='.git' \
   --exclude='*.log' \
   --exclude='Cache' \
   --exclude='cache' \
