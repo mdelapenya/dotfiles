@@ -3,6 +3,9 @@
 cd "$(dirname "${BASH_SOURCE}")";
 DOTFILES_ROOT="`pwd`"
 
+# Source common functions
+source "${DOTFILES_ROOT}/scripts/common.sh"
+
 git pull origin main
 
 function doIt() {
@@ -15,24 +18,6 @@ function doIt() {
 function link_files() {
   ln -fs $1 $2
   success "Linked $1 to $2"
-}
-
-function info() {
-  printf "  [ \033[00;34m..\033[0m ] $1"
-}
-
-function user() {
-  printf "\r  [ \033[0;33m?\033[0m ] $1 "
-}
-
-function success() {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-function fail() {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit
 }
 
 if [ "$1" = "--force" ] || [ "$1" = "-f" ]; then

@@ -6,28 +6,11 @@
 
 set -e
 
-# Color output functions
-function info() {
-  printf "  [ \033[00;34m..\033[0m ] $1\n"
-}
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT="$(pwd)"
 
-function success() {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-function fail() {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit 1
-}
-
-function header() {
-  echo ""
-  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  printf "  \033[1;36m$1\033[0m\n"
-  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  echo ""
-}
+# Source common functions
+source "${DOTFILES_ROOT}/scripts/common.sh"
 
 function show_next_steps() {
   local KEY_ID=$1
@@ -82,7 +65,7 @@ function configure_git() {
 header "GPG Setup for Git Commit Signing"
 
 # Check if GPG is installed
-if ! command -v gpg &> /dev/null; then
+if ! command_exists gpg; then
   fail "GPG is not installed. Run: brew install gnupg"
 fi
 
@@ -105,9 +88,7 @@ if [ "$EXISTING_KEYS" != "0" ]; then
   gpg --list-secret-keys --keyid-format=long
   echo ""
 
-  read -p "Do you want to create a new key anyway? (y/n) " -n 1 -r
-  echo ""
-  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  if ! confirm "Do you want to create a new key anyway?"; then
     echo ""
     read -p "Enter the key ID you want to use (from above): " KEY_ID
 
