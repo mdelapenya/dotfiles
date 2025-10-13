@@ -7,6 +7,27 @@
 #   ./scripts/backup-mac.sh <destination>
 #   ./scripts/backup-mac.sh user@hostname:/backup/path
 #   ./scripts/backup-mac.sh nas:/volume1/backups/laptop
+#
+# SSH Key Authentication:
+#   This script attempts to set up passwordless SSH using your public key.
+#   If passwordless authentication fails after copying the key, check:
+#
+#   1. Remote SSH server configuration:
+#      - Verify public key authentication is enabled in the SSH server config
+#      - NAS devices (Synology, QNAP, etc.) often require enabling this in their
+#        web UI under SSH/Terminal settings
+#      - Example: Synology DSM > Control Panel > Terminal & SNMP > Enable
+#        "Enable SSH public key authentication"
+#
+#   2. File permissions on remote host:
+#      - ~/.ssh directory should be 700 (drwx------)
+#      - ~/.ssh/authorized_keys should be 600 (-rw-------)
+#      - Run: chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
+#
+#   3. SSH server config file (usually /etc/ssh/sshd_config):
+#      - PubkeyAuthentication yes
+#      - AuthorizedKeysFile .ssh/authorized_keys
+#
 ################################################################################
 
 set -e
@@ -194,6 +215,7 @@ rsync -av --progress \
   --exclude='*.log' \
   --exclude='Cache' \
   --exclude='cache' \
+  --exclude='.docker/models' \
   "${EXISTING_ITEMS[@]}" \
   "$DESTINATION/" || fail "Backup failed. Check network connection and try again."
 
