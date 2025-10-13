@@ -12,8 +12,10 @@ done;
 unset file;
 
 # Add google cloud SDK
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+if [ -f "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]; then
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+fi
 
 # Add the GPG key
 export GPG_TTY=$(tty)
@@ -26,8 +28,12 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# Add Go 1.21.7
-GOARCH=arm64 eval "$(gvm 1.21.7)"
+# Add Go via gvm (configured by installs.sh)
+if command -v gvm &> /dev/null; then
+  # gvm is available - Go version set by installs.sh
+  # To change version: GOARCH=arm64 eval "$(gvm <version>)"
+  GOARCH=arm64 eval "$(gvm 1.21.7)" 2>/dev/null || true
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

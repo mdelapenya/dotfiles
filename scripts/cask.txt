@@ -1,4 +1,3 @@
-adobe-acrobat-reader
 google-chrome
 google-cloud-sdk
 keybase
