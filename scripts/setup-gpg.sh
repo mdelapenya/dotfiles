@@ -90,10 +90,19 @@ if [ "$EXISTING_KEYS" != "0" ]; then
 
   if ! confirm "Do you want to create a new key anyway?"; then
     echo ""
-    read -p "Enter the key ID you want to use (from above): " KEY_ID
+    read -p "Enter the key ID you want to use (from above): " KEY_INPUT
 
-    if [ -z "$KEY_ID" ]; then
+    if [ -z "$KEY_INPUT" ]; then
       fail "No key ID provided"
+    fi
+
+    # Normalize key ID: if full fingerprint (40 chars), extract last 16 chars
+    # Otherwise use as-is
+    if [ ${#KEY_INPUT} -eq 40 ]; then
+      KEY_ID="${KEY_INPUT: -16}"
+      info "Normalized full fingerprint to key ID: $KEY_ID"
+    else
+      KEY_ID="$KEY_INPUT"
     fi
 
     # Verify the key exists
