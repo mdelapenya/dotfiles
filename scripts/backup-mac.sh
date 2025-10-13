@@ -86,16 +86,30 @@ function test_ssh_connection() {
 
   # Try SSH connection (timeout after 5 seconds)
   if ssh -o ConnectTimeout=5 -o BatchMode=yes "$ssh_host" "echo 'Connection successful'" &>/dev/null; then
-    success "SSH connection successful"
+    success "SSH connection successful (passwordless)"
     return 0
   else
     info "SSH connection failed or requires setup"
 
     if confirm "Do you want to copy your SSH key to the remote host?"; then
       info "Copying SSH key to $ssh_host..."
-      ssh-copy-id "$ssh_host" || fail "Failed to copy SSH key"
-      success "SSH key copied successfully"
-      return 0
+      if ssh-copy-id "$ssh_host"; then
+        info "Verifying passwordless authentication..."
+        if ssh -o ConnectTimeout=5 -o BatchMode=yes "$ssh_host" "echo 'Connection successful'" &>/dev/null; then
+          success "SSH key copied and verified successfully"
+          return 0
+        else
+          info "SSH key was copied but passwordless auth still not working"
+          info "This may be due to NAS permissions or SSH server configuration"
+          if confirm "Continue anyway? (you'll need to enter password during backup)"; then
+            return 0
+          else
+            fail "Cannot proceed without SSH access"
+          fi
+        fi
+      else
+        fail "Failed to copy SSH key"
+      fi
     else
       info "Skipping SSH key setup"
       if confirm "Continue anyway? (rsync will prompt for password if needed)"; then
@@ -161,7 +175,19 @@ info "Backing up to: $DESTINATION"
 echo ""
 
 # Use rsync with progress and archive mode
+# Options explained:
+#   -a: archive mode (preserves permissions, timestamps, etc.)
+#   -v: verbose
+#   --progress: show progress during transfer
+#   --partial: keep partially transferred files (useful if connection breaks)
+#   --timeout=300: set I/O timeout to 5 minutes
+#   --compress: compress file data during transfer
+#   -e "ssh -o ServerAliveInterval=60": keep SSH connection alive
 rsync -av --progress \
+  --partial \
+  --timeout=300 \
+  --compress \
+  -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3" \
   --exclude='.DS_Store' \
   --exclude='node_modules' \
   --exclude='.git' \
@@ -169,7 +195,7 @@ rsync -av --progress \
   --exclude='Cache' \
   --exclude='cache' \
   "${EXISTING_ITEMS[@]}" \
-  "$DESTINATION/" || fail "Backup failed"
+  "$DESTINATION/" || fail "Backup failed. Check network connection and try again."
 
 echo ""
 success "Backup completed successfully!"
