@@ -2,6 +2,45 @@
 
 > Automated macOS development environment setup
 
+## Using These Dotfiles
+
+### Fork and Customize
+
+This repository is designed to be forked and customized for your own use:
+
+1. **Fork this repository** on GitHub
+
+2. **Clone your fork:**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+   cd ~/.dotfiles
+   ```
+
+3. **Customize the following files:**
+   - **`git/.gitconfig`** - Update `[user]` section with your name, email, and GPG key
+   - **`scripts/formulas.txt`** - Add/remove Homebrew CLI tools
+   - **`scripts/cask.txt`** - Add/remove GUI applications
+   - **`scripts/backup-mac.sh`** - Modify `BACKUP_ITEMS` array for your backup needs
+   - **`system/.aliases`** - Add your own aliases and shortcuts
+
+4. **Run the installer:**
+   ```bash
+   ./install.sh
+   ```
+
+5. **Set up GPG signing** (optional):
+   ```bash
+   ./scripts/setup-gpg.sh
+   ```
+
+### What You Don't Need to Change
+
+The following work out-of-the-box without customization:
+- All shell scripts and functions
+- Bootstrap and installation logic
+- Backup/restore functionality
+- Directory structure
+
 ## What's included
 
 - **Shell configurations**: Bash and Zsh with custom prompts, aliases, and functions
@@ -309,6 +348,14 @@ pyenv versions  # Check installed versions
 
 ### Homebrew path issues
 On Apple Silicon, Homebrew installs to `/opt/homebrew`. The profiles handle this automatically.
+
+## Contributing
+
+Found a bug or want to suggest an improvement? Please open an issue or pull request!
+
+## License
+
+Feel free to fork and modify this project for your own use.
 
 ## Credits
 
