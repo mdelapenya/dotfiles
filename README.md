@@ -97,7 +97,30 @@ The backup script (`scripts/backup-mac.sh`) transfers all items defined in the `
 - **SSH setup**: Automatically tests connection and offers to copy SSH keys if needed
 - **Safety**: Restore offers to skip existing files (won't overwrite by default)
 - **Progress**: Shows transfer progress and size estimates
-- **Exclusions**: Automatically excludes `.DS_Store`, `node_modules`, `.git`, logs, caches
+- **Exclusions**: Automatically excludes `.DS_Store`, `node_modules`, `.git`, logs, caches, `.docker/models`
+
+### SSH Key Authentication for NAS/Remote Hosts
+
+If passwordless SSH authentication fails after copying your key, check the following:
+
+1. **Remote SSH server configuration**:
+   - Verify public key authentication is enabled in the SSH server config
+   - **NAS devices** (Synology, QNAP, etc.) often require enabling this in their web UI
+   - Example: Synology DSM → Control Panel → Terminal & SNMP → Enable "SSH public key authentication"
+
+2. **File permissions on remote host**:
+   ```bash
+   chmod 700 ~/.ssh
+   chmod 600 ~/.ssh/authorized_keys
+   ```
+
+3. **SSH server config** (usually `/etc/ssh/sshd_config`):
+   ```
+   PubkeyAuthentication yes
+   AuthorizedKeysFile .ssh/authorized_keys
+   ```
+
+The backup script will automatically verify passwordless authentication after copying your key and warn you if it's not working.
 
 ### Manual Backup/Restore
 
