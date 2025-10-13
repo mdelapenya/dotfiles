@@ -46,7 +46,7 @@ else
 fi
 unset doIt;
 
-if ! test brew ; then
+if ! command -v brew &> /dev/null ; then
   echo 'Installing homebrew'
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi

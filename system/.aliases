@@ -25,9 +25,14 @@ alias g="git"
 alias p="cd ~/sourcecode/src/github.com"
 
 # Software versions
-# Python
-alias python=/usr/local/bin/python
-alias pip=/usr/local/bin/pip3
+# Python - use pyenv if available, otherwise fall back to system python
+if command -v pyenv &> /dev/null; then
+  alias python="pyenv exec python"
+  alias pip="pyenv exec pip"
+else
+  alias python=/usr/local/bin/python
+  alias pip=/usr/local/bin/pip3
+fi
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
