@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Backup/Restore Mac to another machine
+alias backup-mac="~/.dotfiles/scripts/backup-mac.sh"
+alias restore-mac="~/.dotfiles/scripts/restore-mac.sh"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -68,7 +72,7 @@ alias sudo='sudo '
 # Get week number
 alias week='date +%V'
 # get wheater in current location
-alias elparte="curl https://wttr.in?AT"
+alias elparte="curl https://wttr.in?ATm"
 alias timestamp="date +%s"
 
 # Phoenix: removing NPM modules
