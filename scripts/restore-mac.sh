@@ -121,13 +121,16 @@ rsync $RSYNC_OPTS \
   --partial \
   --timeout=300 \
   --compress \
-  -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3" \
+  --info=progress2 \
+  --no-inc-recursive \
+  -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o TCPKeepAlive=yes" \
   --exclude='.DS_Store' \
   --exclude='node_modules' \
   --exclude='*.log' \
   --exclude='Cache' \
   --exclude='cache' \
   --exclude='.docker/models' \
+  --exclude='.git' \
   "$SOURCE/" \
   "$HOME/" || fail "Restore failed"
 
