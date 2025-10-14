@@ -118,7 +118,16 @@ fi
 echo ""
 
 rsync $RSYNC_OPTS \
+  --partial \
+  --timeout=300 \
+  --compress \
+  -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3" \
   --exclude='.DS_Store' \
+  --exclude='node_modules' \
+  --exclude='*.log' \
+  --exclude='Cache' \
+  --exclude='cache' \
+  --exclude='.docker/models' \
   "$SOURCE/" \
   "$HOME/" || fail "Restore failed"
 
