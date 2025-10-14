@@ -117,6 +117,9 @@ fi
 
 echo ""
 
+# Build rsync command with modern options
+# IMPORTANT: Requires rsync >= 3.1.0 (macOS ships with 2.6.9)
+# If you get "unknown option" errors, install modern rsync: brew install rsync
 rsync $RSYNC_OPTS \
   --partial \
   --timeout=300 \

@@ -184,3 +184,24 @@ The `.gitconfig` includes GPG signing configuration. Use `./scripts/setup-gpg.sh
 - **Private configs:** `.extra` and `.company` are sourced but gitignored. Create these for secrets/work settings.
 - **Backup customization:** Edit `BACKUP_ITEMS` array in `scripts/backup-mac.sh` (around line 42) to change what gets backed up.
 - **NAS authentication:** Synology/QNAP devices require enabling "SSH public key authentication" in web UI for passwordless access.
+
+## Troubleshooting
+
+### Restore Script Hangs or Fails
+
+**Issue:** `restore-mac.sh` hangs during transfer or shows "unknown option" errors
+
+**Cause:** macOS ships with ancient rsync 2.6.9 (from 2006) which lacks modern options used by the restore script (--info=progress2, --no-inc-recursive, etc.)
+
+**Solution:** Install modern rsync via Homebrew:
+```bash
+brew install rsync
+# Verify it's using the Homebrew version
+which rsync  # Should show /opt/homebrew/bin/rsync
+rsync --version  # Should show version >= 3.1.0
+```
+
+The Homebrew rsync will be prioritized in PATH automatically. The restore script requires rsync >= 3.1.0 for:
+- `--info=progress2` - Overall progress display (%, rate, ETA)
+- `--no-inc-recursive` - Upfront directory scanning to prevent apparent hangs
+- Modern timeout and compression options
