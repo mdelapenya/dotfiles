@@ -108,10 +108,10 @@ echo ""
 # --ignore-existing: don't overwrite existing files (safer option)
 # Remove --ignore-existing if you want to overwrite
 if confirm "Do you want to OVERWRITE existing files? (If no, existing files will be skipped)"; then
-  RSYNC_OPTS="-av --progress"
+  RSYNC_OPTS="-av --info=progress2"
   info "Mode: Overwrite existing files"
 else
-  RSYNC_OPTS="-av --progress --ignore-existing"
+  RSYNC_OPTS="-av --info=progress2 --ignore-existing"
   info "Mode: Skip existing files"
 fi
 
@@ -121,7 +121,6 @@ rsync $RSYNC_OPTS \
   --partial \
   --timeout=300 \
   --compress \
-  --info=progress2 \
   --no-inc-recursive \
   -e "ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o TCPKeepAlive=yes" \
   --exclude='.DS_Store' \
