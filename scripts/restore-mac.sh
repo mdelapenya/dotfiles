@@ -132,7 +132,6 @@ rsync $RSYNC_OPTS \
   --exclude='Cache' \
   --exclude='cache' \
   --exclude='.docker/models' \
-  --exclude='.git' \
   "$SOURCE/" \
   "$HOME/" || fail "Restore failed"
 
