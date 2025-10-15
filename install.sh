@@ -97,6 +97,34 @@ else
   info "After installing VSCode, run: ./scripts/vscode.sh"
 fi
 
+# Step 6: Set default shell to zsh
+header "Step 6: Set default shell"
+
+CURRENT_SHELL=$(dscl . -read ~/ UserShell | sed 's/UserShell: //')
+ZSH_PATH=$(which zsh)
+
+if [ "$CURRENT_SHELL" != "$ZSH_PATH" ]; then
+  info "Current shell: $CURRENT_SHELL"
+  info "Changing default shell to zsh: $ZSH_PATH"
+
+  if confirm "Change default shell to zsh?"; then
+    # Ensure zsh is in /etc/shells
+    if ! grep -q "$ZSH_PATH" /etc/shells; then
+      info "Adding $ZSH_PATH to /etc/shells (requires sudo)"
+      echo "$ZSH_PATH" | sudo tee -a /etc/shells > /dev/null
+    fi
+
+    # Change default shell
+    chsh -s "$ZSH_PATH" || fail "Failed to change default shell"
+    success "Default shell changed to zsh"
+    info "Note: You'll need to restart Terminal.app for this to take effect"
+  else
+    info "Skipped shell change (run: chsh -s \$(which zsh) manually later)"
+  fi
+else
+  success "Default shell is already zsh"
+fi
+
 # Final steps
 header "Installation Complete!"
 
