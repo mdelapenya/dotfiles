@@ -34,7 +34,9 @@ export MANPAGER='less -X';
 export GPG_TTY=$(tty);
 
 # Set variable for the release notes (https://github.com/github-tools/github-release-notes#installation)
-export GREN_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
+if [ -f ~/.config/hub ]; then
+  export GREN_GITHUB_TOKEN=$(grep 'oauth_token' ~/.config/hub | cut -d' ' -f4)
+fi
 
 # ANDROID
 #export ANDROID_SDK=/Users/manuel/mobile/adt-bundle-mac-x86_64-20140702/sdk

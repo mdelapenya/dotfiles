@@ -80,4 +80,8 @@ plugins=(
   macos
   vault
 )
-source $ZSH/oh-my-zsh.sh
+
+# Only load Oh My Zsh if it's installed
+if [ -f $ZSH/oh-my-zsh.sh ]; then
+  source $ZSH/oh-my-zsh.sh
+fi
